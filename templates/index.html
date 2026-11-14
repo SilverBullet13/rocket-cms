@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">ARTICLES RECENTS</h1>
+        </div>
+    </div>
+
+    <div class="articles-container">
+        {% for article in articles %}
+            <a href="{{ url_for('view_article', identifiant=article["identifiant"]) }}">
+                <div class="article">
+                    <h2>{{ article["titre"] }}</h2>
+                    <p><strong>Publié le:</strong> {{ article["date_publication"] }}</p>
+                    <p><strong>Écrit par:</strong> {{ article["auteur"] }}</p>
+                    {#<div class="content">
+                    {#                        <p>{{ article["contenu"][:79] | safe }}</p>
+                    {#                    </div>  #}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

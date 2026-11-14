@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Modifier l'utilisateur</h1>
+        </div>
+    </div>
+
+    <form action="{{ url_for('modify_user', user_id=user.id) }}" method="POST">
+        <label>Nom</label>
+        <input type="text" name="nom" value="{{ user.nom }}" required>
+
+        <label>Prénom</label>
+        <input type="text" name="prenom" value="{{ user.prenom }}" required>
+
+        <label>Courriel</label>
+        <input type="text" name="courriel" value="{{ user.courriel }}" required>
+
+        <button type="submit">Mettre à jour</button>
+    </form>
+
+    <div class="action-buttons">
+        <a href="{{ url_for('manage_users') }}" class="edit-btn"> Retour</a>
+    </div>
+
+{% endblock %}

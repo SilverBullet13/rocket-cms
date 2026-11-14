@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">TABLEAU DE BORD </h1>
+            <a></a>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{{ url_for('create_article') }}" class="button-primary">Créer un nouvel article</a>
+        <a href="{{ url_for('manage_users') }}" class="button-primary">Gérer les utilisateurs</a>
+    </div>
+     <div class="articles-container">
+        {% for article in articles %}
+            <a href="{{ url_for('view_article', identifiant=article["identifiant"]) }}">
+                <div class="article">
+                    <h2>{{ article["titre"] }}</h2>
+                    <p><strong>Publié le:</strong> {{ article["date_publication"] }}</p>
+                    <p><strong>Écrit par:</strong> {{ article["auteur"] }}</p>
+                    {# <p>{{ article["contenu"] | safe }}</p> #}
+                </div>
+             </a>
+        {% endfor %}
+     </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Supprimer l'utilisateur</h1>
+
+<p>Êtes-vous sûr de vouloir supprimer <strong>{{ user.nom }} {{ user.prenom }}</strong> ?</p>
+
+<form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST">
+    <button type="submit">Oui, Supprimer</button>
+</form>
+
+<a href="{{ url_for('manage_users') }}">⬅ Annuler</a>
+
+{% endblock %}

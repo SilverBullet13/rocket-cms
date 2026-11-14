@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">CRÉER UN NOUVEL ARTICLE</h1>
+        </div>
+    </div>
+
+    <form action="{{ url_for('create_article') }}" method="POST">
+
+        {% if message_erreur %}
+            <p class="error"> {{ message_erreur }}</p>
+        {% endif %}
+
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" name="titre" value="{{ request.form['titre'] if request.form else '' }}">
+
+        <label for="contenu">Contenu</label>
+        <textarea id="contenu" name="contenu" rows="8">{{ request.form['contenu'] if request.form else '' }}</textarea>
+
+        <label for="date_publication">Date de publication</label>
+        <input type="date" id="date_publication" name="date_publication"
+                value="{{ request.form['date_publication'] if request.form else '' }}">
+
+        <div class="button-group">
+                <button type="submit">Publier</button>
+        </div>
+    </form>
+     <div class="action-buttons">
+         <a href="{{ url_for('dashboard') }}" class="edit-btn">Retour au tableau de bord</a>
+     </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="header">
+            <h1 class="page-title">Créer un nouvel utilisateur</h1>
+        </div>
+    </div>
+
+    <form action="{{ url_for('create_user') }}" method="POST">
+        {% if message_erreur %}
+            <p class="error"> {{ message_erreur }}</p>
+        {% endif %}
+
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" value="{{ request.form['nom'] if request.form else '' }}">
+
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" value="{{ request.form['prenom'] if request.form else '' }}">
+
+        <label for="courriel">Courriel</label>
+        <input type="text" id="courriel" name="courriel" value="{{ request.form['courriel'] if request.form else '' }}">
+
+        <label for="mdp">Mot de passe</label>
+        <input type="password" id="mdp" name="password">
+
+        <button type="submit">Créer</button>
+    </form>
+    <div>
+        <button class="button-primary">
+            <a href="{{ url_for('manage_users') }}">⬅ Retour</a>
+        </button>
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {# <h1>{{ article.titre }}</h1> #}
+
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Publié le</th>
+                <th>Auteur</th>
+                <th>Avatar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.date_publication }}</td>
+                <td>{{ article.auteur }}</td>
+                <td>
+                    <img src="{{ url_for('static', filename='def-avatar/' + article.user_avatar) }}"
+                    height="50" width="50" alt="Avatar de {{ article.auteur }}" style="border-radius: 50%;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <div>
+        <p>{{ article.contenu | safe }}</p>
+    </div>
+    <br>
+    <br>
+    d
+    {% if 'user_id' in session %}
+        <div class="action-buttons">
+            <a href="{{ url_for('dashboard') }}" class="edit-btn">Retour</a>
+            <a href="{{ url_for('edit_article', identifiant=article.identifiant) }}" class="button-secondary">Modifier</a>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{# {% extends 'base.html' %}
+{#
+{#{% block content %}
+{#<div>
+{#    <h1>{{ article.titre }}</h1>
+{#    <p><strong>Publié le: </strong>{{ article.date_publication }}</p>
+{#    <p><strong>Écrit par: </strong>{{ article.auteur }}</p>
+{#    <div class="container">
+{#        {{ article.contenu | safe }}
+{#    </div>
+{#     {% if 'user_id' in session %}
+{#         <div class="action-buttons">
+{#             <div>
+{#                <button class="button-secondary"><a href="{{ url_for('dashboard') }}">Retour</a></button>
+{#             </div>
+{#             <div>
+{#                <button class="button-primary"><a href="{{ url_for('edit_article', identifiant=article.identifiant) }}">Modifier</a></button>
+{#             </div>
+{#         </div>
+{#    {% endif %}
+{#</div>
+{#
+{#{% endblock %} #}
